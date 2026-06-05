@@ -1,12 +1,12 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-const BASE_URL = "http://localhost:5000/api"; // use http and correct port for local dev
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 const getHeader = () => {
     const token = Cookies.get("token");
-    return token ?{
-        Authorization : `Bearer ${token}`
+    return token ? {
+        Authorization: `Bearer ${token}`
     } : {};
-}
+};
 const api = {
     get : async(url) => {
         const path = url.startsWith('/') ? url : `/${url}`;
